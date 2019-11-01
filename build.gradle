@@ -1,0 +1,79 @@
+buildscript {
+    ext.versions = [
+            'min_sdk'            : 21,
+            'compile_sdk'        : 29,
+            'android_x_version'  : '1.0.0',
+
+            'build_tools_version': '29.0.2',
+            'android_plugin'     : '3.5.1',
+
+            'arch_components'    : '1.1.0',
+            'room'               : '1.0.0',
+            'room_rx'            : '1.0.0',
+
+            'picasso'            : '2.5.2',
+            'rxJava'             : '2.1.7',
+            'rxAndroid'          : '2.0.1',
+
+            'shimmerLayout'      : '2.1.0',
+            'statefulLayout'     : '1.2.1',
+            'lovelyDialog'       : '1.1.0',
+            'swipe2Delete'       : '1.0',
+            'butterKnife'        : '10.2.0'
+    ];
+
+    ext.deps = [
+            android   : [
+                    'gradlePlugin'   : "com.android.tools.build:gradle:${versions.android_plugin}",
+                    'lifecycleExt'   : "android.arch.lifecycle:extensions:${versions.arch_components}",
+                    'lifecycleCommon': "android.arch.lifecycle:common-java8:${versions.arch_components}",
+                    'roomRuntime'    : "android.arch.persistence.room:runtime:${versions.room}",
+                    'roomCompiler'   : "android.arch.persistence.room:compiler:${versions.room}",
+                    'roomRx'         : "android.arch.persistence.room:rxjava2:${versions.room_rx}",
+            ],
+            support   : [
+                    'appCompat'    : "androidx.appcompat:appcompat:${versions.android_x_version}",
+                    'recyclerView' : "androidx.recyclerview:recyclerview:${versions.android_x_version}",
+                    'cardView'     : "androidx.cardview:cardview:${versions.android_x_version}",
+                    'support'      : "androidx.legacy:legacy-support-v13:${versions.android_x_version}",
+                    'support-4'    : "androidx.legacy:legacy-support-v4:${versions.android_x_version}",
+                    'designSupport': "com.google.android.material:material:${versions.android_x_version}",
+            ],
+            reactivex : [
+                    'rxJava'   : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+                    'rxAndroid': "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"
+            ],
+            square    : [
+                    'picasso': "com.squareup.picasso:picasso:${versions.picasso}",
+            ],
+            thirdParty: [
+                    'shimmerLayout'       : "io.supercharge:shimmerlayout:${versions.shimmerLayout}",
+                    'statefulLayout'      : "com.github.gturedi:stateful-layout:${versions.statefulLayout}",
+                    'lovelyDialog'        : "com.yarolegovich:lovely-dialog:${versions.lovelyDialog}",
+                    'swipe2Delete'        : "com.agilie:swipe2delete:${versions.swipe2Delete}",
+                    'butterKnife'         : "com.jakewharton:butterknife:${versions.butterKnife}",
+                    'butterKnifeProcessor': "com.jakewharton:butterknife-compiler:${versions.butterKnife}"
+            ]
+    ];
+
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath deps.android.gradlePlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "867128207230",
+    "firebase_url": "https://matchy-2a306.firebaseio.com",
+    "project_id": "matchy-2a306",
+    "storage_bucket": "matchy-2a306.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867128207230:android:6b2526e077b9ab7d63752f",
+        "android_client_info": {
+          "package_name": "com.se.matchy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867128207230-k6m5ui32ibnikt7qtl78j1ii2m64bsi3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.se.matchy",
+            "certificate_hash": "56ec37563cd87c66ae63b5393f57bea80f35793a"
+          }
+        },
+        {
+          "client_id": "867128207230-5rrjnc2lspkl877sb3g6j51e5mamqa9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChqRZWb2ra1tk9jkMVsetOR4QfYW6RDWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867128207230-5rrjnc2lspkl877sb3g6j51e5mamqa9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
