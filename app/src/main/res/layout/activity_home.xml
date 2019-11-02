@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_header_height">
+
+            <com.scwang.wave.MultiWaveHeader
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorPrimaryDark"
+                app:mwhCloseColor="@color/colorPrimaryDark"
+                app:mwhColorAlpha="0.9"
+                app:mwhGradientAngle="270"
+                app:mwhIsRunning="true"
+                app:mwhStartColor="@color/colorPrimary"
+                app:mwhVelocity=".4"
+                app:mwhWaves="PairWave" />
+
+            <TextView
+                android:id="@+id/activity_main_choose_topics_header_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:text="@string/choose_your_topics_header"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_huge" />
+
+            <TextView
+                android:id="@+id/activity_main_topics_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_main_choose_topics_header_text_view"
+                android:layout_alignStart="@id/activity_main_choose_topics_header_text_view"
+                android:layout_alignEnd="@id/activity_main_choose_topics_header_text_view"
+                android:text="@string/topics"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_huge"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/activity_main_topics_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_main_topics_text_view"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginBottom="@dimen/spacing_huge" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:text="@string/recent_matches"
+            android:textSize="@dimen/text_size_large" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_main_recent_matches_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

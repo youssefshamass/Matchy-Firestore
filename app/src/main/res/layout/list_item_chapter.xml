@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/chapter_card_width"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:foreground="?selectableItemBackground"
+    android:orientation="vertical"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_normal">
+
+        <TextView
+            android:id="@+id/list_item_chapter_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_large"
+            tools:text="Chapter Title" />
+
+        <TextView
+            android:id="@+id/list_item_chapter_description_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            android:textSize="@dimen/text_size_normal"
+            tools:text="Chapter description which could be a really long long long description till it hits the third line" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
