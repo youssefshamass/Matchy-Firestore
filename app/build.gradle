@@ -28,6 +28,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation deps.firebase.firebaseAnalytics
+    implementation deps.thirdParty.lovelyDialog
+    implementation deps.thirdParty.waveHeaders
+
+    api deps.firebase.firestore
     api deps.support.appCompat
     api deps.support.recyclerView
     api deps.support.cardView
@@ -42,8 +47,11 @@ dependencies {
     api deps.reactivex.rxJava
     api deps.reactivex.rxAndroid
 
-    api deps.thirdParty.butterKnife
-    annotationProcessor deps.thirdParty.butterKnifeProcessor
 
-    implementation deps.thirdParty.lovelyDialog
+    api deps.thirdParty.timber
+    api deps.thirdParty.butterKnife
+    api deps.thirdParty.statefulLayout
+    annotationProcessor deps.thirdParty.butterKnifeProcessor
 }
+
+apply plugin: 'com.google.gms.google-services'

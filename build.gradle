@@ -3,9 +3,9 @@ buildscript {
             'min_sdk'            : 21,
             'compile_sdk'        : 29,
             'android_x_version'  : '1.0.0',
-
             'build_tools_version': '29.0.2',
             'android_plugin'     : '3.5.1',
+            'gms'                : '4.3.2',
 
             'arch_components'    : '1.1.0',
             'room'               : '1.0.0',
@@ -19,7 +19,11 @@ buildscript {
             'statefulLayout'     : '1.2.1',
             'lovelyDialog'       : '1.1.0',
             'swipe2Delete'       : '1.0',
-            'butterKnife'        : '10.2.0'
+            'butterKnife'        : '10.2.0',
+            'firebase'           : '17.2.0',
+            'firebaseFirestore'  : '21.2.1',
+            'waveHeaders'        : '1.0.0-alpha-1',
+            'timber'             : '4.7.1'
     ];
 
     ext.deps = [
@@ -30,6 +34,10 @@ buildscript {
                     'roomRuntime'    : "android.arch.persistence.room:runtime:${versions.room}",
                     'roomCompiler'   : "android.arch.persistence.room:compiler:${versions.room}",
                     'roomRx'         : "android.arch.persistence.room:rxjava2:${versions.room_rx}",
+            ],
+            firebase  : [
+                    'firebaseAnalytics': "com.google.firebase:firebase-analytics:${versions.firebase}",
+                    'firestore'        : "com.google.firebase:firebase-firestore:${versions.firebaseFirestore}"
             ],
             support   : [
                     'appCompat'    : "androidx.appcompat:appcompat:${versions.android_x_version}",
@@ -52,7 +60,9 @@ buildscript {
                     'lovelyDialog'        : "com.yarolegovich:lovely-dialog:${versions.lovelyDialog}",
                     'swipe2Delete'        : "com.agilie:swipe2delete:${versions.swipe2Delete}",
                     'butterKnife'         : "com.jakewharton:butterknife:${versions.butterKnife}",
-                    'butterKnifeProcessor': "com.jakewharton:butterknife-compiler:${versions.butterKnife}"
+                    'butterKnifeProcessor': "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
+                    'waveHeaders'         : "com.scwang.wave:MultiWaveHeader:${versions.waveHeaders}",
+                    'timber'              : "com.jakewharton.timber:timber:${versions.timber}"
             ]
     ];
 
@@ -63,6 +73,7 @@ buildscript {
     }
     dependencies {
         classpath deps.android.gradlePlugin
+        classpath "com.google.gms:google-services:${versions.gms}"
     }
 }
 
