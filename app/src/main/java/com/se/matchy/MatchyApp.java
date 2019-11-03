@@ -2,8 +2,6 @@ package com.se.matchy;
 
 import android.app.Application;
 
-import com.se.matchy.utils.Constants;
-
 import timber.log.Timber;
 
 public class MatchyApp extends Application {

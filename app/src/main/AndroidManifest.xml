@@ -26,6 +26,9 @@
             android:name=".ui.survey.ui.SurveyActivity"
             android:parentActivityName=".ui.home.ui.HomeActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.matches.ui.MatchesActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

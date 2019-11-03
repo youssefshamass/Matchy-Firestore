@@ -6,4 +6,6 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+
+    <color name="demo_dark_transparent">#24000000</color>
 </resources>

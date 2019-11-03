@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.se.matchy.R;
 import com.se.matchy.framework.messages.Response;
 import com.se.matchy.framework.ui.BaseActivity;
@@ -32,7 +33,7 @@ public class HomeActivity extends BaseActivity {
     private HomeViewModel mHomeViewModel;
 
     @BindView(R.id.activity_main_topics_recycler_view)
-    public RecyclerView mChaptersRecyclerView;
+    public ShimmerRecyclerView mChaptersRecyclerView;
     @BindView(R.id.activity_main_recent_matches_recycler_view)
     public RecyclerView mRecentMatchesRecyclerView;
 
@@ -61,12 +62,16 @@ public class HomeActivity extends BaseActivity {
         mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         mHomeViewModel.observerChapters(this, response -> {
             if (response instanceof Response.Loading) {
-                Timber.d("IsLoading : " + ((Response.Loading) response).isLoading());
+                if (((Response.Loading) response).isLoading())
+                    mChaptersRecyclerView.showShimmerAdapter();
+                else
+                    mChaptersRecyclerView.hideShimmerAdapter();
             } else if (response instanceof Response.Error) {
 
             } else {
                 Response.Succeed succeed = (Response.Succeed) response;
-                mChapterAdapter.setDataSource((List) succeed.getData());
+                if (succeed.getData() != null)
+                    mChapterAdapter.setDataSource((List) succeed.getData());
             }
         });
 

@@ -3,4 +3,8 @@
     <string name="choose_your_topics_header">Choose your</string>
     <string name="topics">Topics</string>
     <string name="recent_matches">Recent matches</string>
+    <string name="missing_answers_validation_message">One answer is required at least</string>
+    <string name="offline_warning_message">Please, check your internet connection and try again in a few moments</string>
+    <string name="fetching_preferences_for_the_following_criteria">Fetching preferences for the following criteria</string>
+    <string name="matches">Matches</string>
 </resources>

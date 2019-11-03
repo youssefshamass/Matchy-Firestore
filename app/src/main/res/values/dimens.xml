@@ -12,6 +12,7 @@
 
     <dimen name="text_size_huge">32sp</dimen>
     <dimen name="text_size_large">24sp</dimen>
+    <dimen name="text_size_big">18sp</dimen>
     <dimen name="text_size_normal">13sp</dimen>
     <dimen name="text_size_sub">11sp</dimen>
     <dimen name="text_size_small">9sp</dimen>

@@ -49,14 +49,18 @@
                 android:textSize="@dimen/text_size_huge"
                 android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                 android:id="@+id/activity_main_topics_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/activity_main_topics_text_view"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:layout_marginBottom="@dimen/spacing_huge" />
+                android:layout_marginBottom="@dimen/spacing_huge"
+                app:shimmer_demo_angle="20"
+                app:shimmer_demo_child_count="3"
+                app:shimmer_demo_layout="@layout/list_item_chapter_shimmer"
+                app:shimmer_demo_layout_manager_type="linear_horizontal" />
 
         </RelativeLayout>
 

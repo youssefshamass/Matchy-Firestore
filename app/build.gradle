@@ -49,8 +49,12 @@ dependencies {
 
 
     api deps.thirdParty.timber
-    api deps.thirdParty.butterKnife
     api deps.thirdParty.statefulLayout
+    api deps.thirdParty.stepper
+
+    api deps.thirdParty.butterKnife
+    api deps.thirdParty.flexBox
+    api deps.thirdParty.shimmerLayout
     annotationProcessor deps.thirdParty.butterKnifeProcessor
 }
 

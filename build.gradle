@@ -15,7 +15,7 @@ buildscript {
             'rxJava'             : '2.1.7',
             'rxAndroid'          : '2.0.1',
 
-            'shimmerLayout'      : '2.1.0',
+            'shimmerLayout'      : 'v1.3',
             'statefulLayout'     : '1.2.1',
             'lovelyDialog'       : '1.1.0',
             'swipe2Delete'       : '1.0',
@@ -23,7 +23,9 @@ buildscript {
             'firebase'           : '17.2.0',
             'firebaseFirestore'  : '21.2.1',
             'waveHeaders'        : '1.0.0-alpha-1',
-            'timber'             : '4.7.1'
+            'timber'             : '4.7.1',
+            'stepper'            : '4.3.1',
+            'flexBox'            : '1.1.1',
     ];
 
     ext.deps = [
@@ -55,21 +57,23 @@ buildscript {
                     'picasso': "com.squareup.picasso:picasso:${versions.picasso}",
             ],
             thirdParty: [
-                    'shimmerLayout'       : "io.supercharge:shimmerlayout:${versions.shimmerLayout}",
+                    'shimmerLayout'       : "com.github.sharish:ShimmerRecyclerView:${versions.shimmerLayout}",
                     'statefulLayout'      : "com.github.gturedi:stateful-layout:${versions.statefulLayout}",
                     'lovelyDialog'        : "com.yarolegovich:lovely-dialog:${versions.lovelyDialog}",
                     'swipe2Delete'        : "com.agilie:swipe2delete:${versions.swipe2Delete}",
                     'butterKnife'         : "com.jakewharton:butterknife:${versions.butterKnife}",
                     'butterKnifeProcessor': "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
                     'waveHeaders'         : "com.scwang.wave:MultiWaveHeader:${versions.waveHeaders}",
-                    'timber'              : "com.jakewharton.timber:timber:${versions.timber}"
+                    'timber'              : "com.jakewharton.timber:timber:${versions.timber}",
+                    'stepper'             : "com.stepstone.stepper:material-stepper:${versions.stepper}",
+                    'flexBox'             : "com.google.android:flexbox:${versions.flexBox}"
             ]
     ];
 
     repositories {
         google()
         jcenter()
-
+        maven { url "https://jitpack.io" }
     }
     dependencies {
         classpath deps.android.gradlePlugin
@@ -81,7 +85,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+        maven { url "https://jitpack.io" }
     }
 }
 
