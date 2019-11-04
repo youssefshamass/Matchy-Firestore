@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+/**
+ * Base implementation of the recycler view adapter.
+ */
 public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     //region Variables
 

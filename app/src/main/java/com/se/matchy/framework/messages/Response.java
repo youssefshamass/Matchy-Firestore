@@ -1,5 +1,12 @@
 package com.se.matchy.framework.messages;
 
+/**
+ * The standard class used to communicate responses between UI and view model.
+ * It has three types:
+ *  - Loading (1 || 0)
+ *  - Error (Throwable)
+ *  - Succeeded (Object)
+ */
 public class Response {
     //region Response Types
 

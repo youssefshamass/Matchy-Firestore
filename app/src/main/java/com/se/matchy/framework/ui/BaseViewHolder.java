@@ -6,6 +6,9 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Base implementation of RecyclerView.ViewHolder
+ */
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
     //region Variables
 
