@@ -73,6 +73,35 @@
             android:text="@string/recent_matches"
             android:textSize="@dimen/text_size_large" />
 
+        <LinearLayout
+            android:id="@+id/activity_home_lack_permission_view_group"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/sign_in_cheering_message"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/activity_home_sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:background="@drawable/bg_oval_accent"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/sign_in"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_main_recent_matches_recycler_view"
             android:layout_width="match_parent"

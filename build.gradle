@@ -15,13 +15,15 @@ buildscript {
             'rxJava'             : '2.1.7',
             'rxAndroid'          : '2.0.1',
 
+            'firebase'           : '17.2.0',
+            'firebaseFirestore'  : '21.2.1',
+            'firebaseAuth'       : '19.1.0',
+
             'shimmerLayout'      : 'v1.3',
             'statefulLayout'     : '1.2.1',
             'lovelyDialog'       : '1.1.0',
             'swipe2Delete'       : '1.0',
             'butterKnife'        : '10.2.0',
-            'firebase'           : '17.2.0',
-            'firebaseFirestore'  : '21.2.1',
             'waveHeaders'        : '1.0.0-alpha-1',
             'timber'             : '4.7.1',
             'stepper'            : '4.3.1',
@@ -39,7 +41,8 @@ buildscript {
             ],
             firebase  : [
                     'firebaseAnalytics': "com.google.firebase:firebase-analytics:${versions.firebase}",
-                    'firestore'        : "com.google.firebase:firebase-firestore:${versions.firebaseFirestore}"
+                    'firestore'        : "com.google.firebase:firebase-firestore:${versions.firebaseFirestore}",
+                    'firebaseAuth'     : "com.google.firebase:firebase-auth:${versions.firebaseAuth}",
             ],
             support   : [
                     'appCompat'    : "androidx.appcompat:appcompat:${versions.android_x_version}",

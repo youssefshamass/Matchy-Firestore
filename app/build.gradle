@@ -33,6 +33,7 @@ dependencies {
     implementation deps.thirdParty.waveHeaders
 
     api deps.firebase.firestore
+    api deps.firebase.firebaseAuth
     api deps.support.appCompat
     api deps.support.recyclerView
     api deps.support.cardView

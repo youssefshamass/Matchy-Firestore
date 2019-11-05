@@ -16,6 +16,7 @@
         <!--Activities-->
         <activity
             android:name=".ui.home.ui.HomeActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +29,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.matches.ui.MatchesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.auth.ui.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.auth.ui.SignInActivity"
             android:screenOrientation="portrait" />
 
     </application>

@@ -7,4 +7,17 @@
     <string name="offline_warning_message">Please, check your internet connection and try again in a few moments</string>
     <string name="fetching_preferences_for_the_following_criteria">Fetching preferences for the following criteria</string>
     <string name="matches">Matches</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="retype_password">Retype password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="required">Required</string>
+    <string name="password_mismatch_validation_message">Please make sure passwords are matched</string>
+    <string name="weak_password_validation_message">Password length must be at least 6 characters long</string>
+    <string name="sign_in_cheering_message">Sign in now to keep record of your matches.</string>
+    <string name="sign_in">Sign in</string>
+    <string name="invalid_format">Invalid format</string>
+    <string name="successfully_signed_in">Welcome to Matchy</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
 </resources>

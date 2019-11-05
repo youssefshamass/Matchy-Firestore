@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.se.matchy.BuildConfig;
 import com.se.matchy.framework.messages.Response;
 
 /**
@@ -15,7 +16,8 @@ public class AbstractViewModel extends ViewModel {
 
     /**
      * Publishes a loading state for all observers on a live data object
-     * @param source source to publish the state on
+     *
+     * @param source    source to publish the state on
      * @param isLoading whether its loading or not
      */
     protected void publishLoading(MutableLiveData<Response> source, boolean isLoading) {
@@ -27,8 +29,9 @@ public class AbstractViewModel extends ViewModel {
 
     /**
      * Publishes a succeeded state for all observers on a live data object
+     *
      * @param source source to publish the state on
-     * @param data what to publish
+     * @param data   what to publish
      */
     protected void publishData(MutableLiveData<Response> source, Object data) {
         publishLoading(source, false);
@@ -40,9 +43,10 @@ public class AbstractViewModel extends ViewModel {
 
     /**
      * Publishes an error state for all observers on a live data source
-     * @param source where to publish
+     *
+     * @param source    where to publish
      * @param throwable the throwable with its stack
-     * @param message custom message, preferable throwable message
+     * @param message   custom message, preferable throwable message
      */
     protected void publishError(MutableLiveData<Response> source, Throwable throwable, String message) {
         publishLoading(source, false);
@@ -53,7 +57,12 @@ public class AbstractViewModel extends ViewModel {
     }
 
     protected void publishError(MutableLiveData<Response> source, Throwable throwable) {
-        publishError(source, throwable, throwable.getMessage());
+        String message = "Please make sure you're using a steady internet connection with VPN enabled on it.";
+
+        if (BuildConfig.DEBUG)
+            message = throwable.getMessage();
+
+        publishError(source, throwable, message);
     }
 
     //endregion
