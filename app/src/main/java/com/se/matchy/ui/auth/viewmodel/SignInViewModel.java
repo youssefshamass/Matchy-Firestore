@@ -44,8 +44,9 @@ public class SignInViewModel extends AbstractViewModel {
 
     /**
      * authenticate a user using Firebase Authentication Library
+     *
      * @param emailAddress user's email
-     * @param password user's password
+     * @param password     user's password
      */
     public void signIn(String emailAddress, String password) {
         publishLoading(mUser, true);
@@ -61,7 +62,7 @@ public class SignInViewModel extends AbstractViewModel {
                 })
                 .addOnFailureListener(e -> {
                     Timber.e(e);
-                    publishError(mUser, e);
+                    publishError(mUser, new IllegalAccessError("Invalid username or password"));
                 });
     }
     //endregion

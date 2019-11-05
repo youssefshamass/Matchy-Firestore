@@ -1,5 +1,6 @@
 package com.se.matchy.ui.auth.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ public class SignInActivity extends BaseActivity implements Observer<Response> {
     @OnClick(R.id.activity_sign_in_sign_up_text_view)
     public void onSignUpClicked() {
         Intent signupIntent = SignUpActivity.newIntent(this);
+        signupIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(signupIntent);
     }
 

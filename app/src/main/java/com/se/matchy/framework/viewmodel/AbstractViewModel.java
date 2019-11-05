@@ -59,7 +59,7 @@ public class AbstractViewModel extends ViewModel {
     protected void publishError(MutableLiveData<Response> source, Throwable throwable) {
         String message = "Please make sure you're using a steady internet connection with VPN enabled on it.";
 
-        if (BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG || throwable instanceof IllegalAccessError)
             message = throwable.getMessage();
 
         publishError(source, throwable, message);
