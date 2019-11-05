@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,11 +22,13 @@ import com.se.matchy.framework.ui.BaseActivity;
 import com.se.matchy.framework.ui.BaseViewHolder;
 import com.se.matchy.framework.ui.decorators.HorizontalEdgeDecorator;
 import com.se.matchy.framework.ui.decorators.HorizontalSpaceDecorator;
+import com.se.matchy.framework.ui.decorators.VerticalSpaceDecorator;
 import com.se.matchy.model.chapter.Chapter;
 import com.se.matchy.ui.auth.ui.SignInActivity;
 import com.se.matchy.ui.auth.ui.SignUpActivity;
 import com.se.matchy.ui.home.ui.adapters.ChapterAdapter;
 import com.se.matchy.ui.home.viewmodel.HomeViewModel;
+import com.se.matchy.ui.matches.adapters.MatchAdapter;
 import com.se.matchy.ui.survey.ui.SurveyActivity;
 
 import java.util.List;
@@ -46,9 +50,12 @@ public class HomeActivity extends BaseActivity {
     public RecyclerView mRecentMatchesRecyclerView;
     @BindView(R.id.activity_home_lack_permission_view_group)
     public ViewGroup mLackOfPermissionsViewGroup;
+    @BindView(R.id.activity_home_recent_matches_progress_bar)
+    public ProgressBar mRecentMatchesProgressBar;
 
     private FirebaseUser mFirebaseUser;
     private ChapterAdapter mChapterAdapter;
+    private MatchAdapter mMatchAdapter;
 
     //endregion
 
@@ -105,6 +112,20 @@ public class HomeActivity extends BaseActivity {
             }
         });
 
+        mHomeViewModel.observeMatches(this, response -> {
+            if (response instanceof Response.Loading) {
+                if (((Response.Loading) response).isLoading())
+                    mRecentMatchesProgressBar.setVisibility(View.VISIBLE);
+                else
+                    mRecentMatchesProgressBar.setVisibility(View.GONE);
+            } else if (response instanceof Response.Succeed) {
+                Response.Succeed succeed = (Response.Succeed) response;
+
+                if (succeed.getData() != null)
+                    mMatchAdapter.setDataSource((List<Object>) succeed.getData());
+            }
+        });
+
         setupRecyclerViews();
     }
 
@@ -130,6 +151,14 @@ public class HomeActivity extends BaseActivity {
                 R.dimen.spacing_normal
         )));
         mChaptersRecyclerView.setAdapter(mChapterAdapter);
+
+        if (mMatchAdapter == null)
+            mMatchAdapter = new MatchAdapter();
+
+        mRecentMatchesRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        mRecentMatchesRecyclerView.addItemDecoration(new VerticalSpaceDecorator(getResources().getDimensionPixelSize(R.dimen.spacing_small),
+                getResources().getDimensionPixelSize(R.dimen.spacing_small)));
+        mRecentMatchesRecyclerView.setAdapter(mMatchAdapter);
     }
 
     private void updateUIBasedOnUserStatus() {

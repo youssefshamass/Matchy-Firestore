@@ -56,6 +56,12 @@ public class AbstractViewModel extends ViewModel {
         source.setValue(new Response.Error(throwable, message));
     }
 
+    /**
+     * Publishes an error state for all observers on a live data source
+     *
+     * @param source    where to publish
+     * @param throwable the throwable with its stack
+     */
     protected void publishError(MutableLiveData<Response> source, Throwable throwable) {
         String message = "Please make sure you're using a steady internet connection with VPN enabled on it.";
 

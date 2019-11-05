@@ -64,23 +64,38 @@
 
         </RelativeLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_large"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            android:text="@string/recent_matches"
-            android:textSize="@dimen/text_size_large" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:text="@string/recent_matches"
+                android:textSize="@dimen/text_size_large" />
+
+            <ProgressBar
+                android:id="@+id/activity_home_recent_matches_progress_bar"
+                style="?android:progressBarStyleSmallTitle"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="4dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/activity_home_lack_permission_view_group"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"
@@ -106,6 +121,11 @@
             android:id="@+id/activity_main_recent_matches_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal" />
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

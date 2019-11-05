@@ -89,7 +89,8 @@ public class ServiceProvider extends FireStoreModel {
 
     public enum Fields {
         chapterID,
-        tags
+        tags,
+        uid
     }
 
     //endregion

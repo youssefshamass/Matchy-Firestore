@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.gturedi.views.StatefulLayout;
 import com.se.matchy.R;
 import com.se.matchy.framework.messages.Response;
 import com.se.matchy.framework.ui.BaseActivity;
 import com.se.matchy.framework.ui.decorators.VerticalSpaceDecorator;
+import com.se.matchy.model.serviceprovider.ServiceProvider;
 import com.se.matchy.ui.matches.adapters.CriteriaAdapter;
 import com.se.matchy.ui.matches.adapters.MatchAdapter;
 import com.se.matchy.ui.matches.viewmodel.MatchesViewModel;
@@ -97,6 +100,10 @@ public class MatchesActivity extends BaseActivity implements Observer<Response> 
 
             if (mMatchAdapter != null)
                 mMatchAdapter.setDataSource((List) succeed.getData());
+
+            if (mMatchesViewModel.isLoggedIn()) {
+                persistMatches((List<ServiceProvider>) succeed.getData());
+            }
         }
     }
 
@@ -154,6 +161,11 @@ public class MatchesActivity extends BaseActivity implements Observer<Response> 
         mOutcomeMap = (HashMap) getIntent().getSerializableExtra(EXTRA_OUTCOME);
     }
 
+    /**
+     * Concatenate evey outcome selected by user in the survey phase
+     *
+     * @return a list of strings which are directly mapped to service provider tags.
+     */
     private List<String> getTags() {
         if (mOutcomeMap == null)
             return null;
@@ -164,6 +176,15 @@ public class MatchesActivity extends BaseActivity implements Observer<Response> 
         }
 
         return tags;
+    }
+
+    /**
+     * Persist matches in the user recent matches collection
+     */
+    private void persistMatches(List<ServiceProvider> serviceProviders) {
+        FirebaseUser firebaseUser = mMatchesViewModel.getLoggedInUser();
+
+        mMatchesViewModel.persistMatches(firebaseUser, serviceProviders);
     }
 
     //endregion

@@ -4,14 +4,19 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.se.matchy.framework.messages.Response;
 import com.se.matchy.framework.viewmodel.AbstractViewModel;
 import com.se.matchy.metadata.Collections;
 import com.se.matchy.model.chapter.Chapter;
+import com.se.matchy.model.serviceprovider.ServiceProvider;
+import com.se.matchy.model.users.UserMatch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +30,22 @@ public class HomeViewModel extends AbstractViewModel {
      * Chapters source to log events into
      */
     private MutableLiveData<Response> mChapters;
+    /**
+     * Previously matched service providers source to log events into
+     */
+    private MutableLiveData<Response> mUserMatches;
     /*
         Direct reference to chapters collection in FireStore
      */
     private CollectionReference mChaptersCollection;
     /*
-        Direct reference to UserMatches collection in FireStore
+        Direct reference to UserMatch collection in FireStore
      */
     private CollectionReference mUserMatchesCollection;
+    /*
+        Direct reference to ServiceProviders collection in FireStore
+     */
+    private CollectionReference mServiceProvidersCollection;
 
     /*
         FireBase Authentication Client.
@@ -45,12 +58,14 @@ public class HomeViewModel extends AbstractViewModel {
 
     public HomeViewModel() {
         mChapters = new MutableLiveData<>();
+        mUserMatches = new MutableLiveData<>();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         mChaptersCollection = db.collection(Collections.chapters.toString());
         mUserMatchesCollection = db.collection(Collections.userMatches.toString());
+        mServiceProvidersCollection = db.collection(Collections.serviceProviders.toString());
     }
 
     //endregion
@@ -59,11 +74,22 @@ public class HomeViewModel extends AbstractViewModel {
 
     /**
      * Registers an observer which gets notified at any change on the chapters source.
+     *
      * @param lifecycleOwner Activity|Fragment
-     * @param observer observer implementation
+     * @param observer       observer implementation
      */
     public void observerChapters(LifecycleOwner lifecycleOwner, Observer<Response> observer) {
         mChapters.observe(lifecycleOwner, observer);
+    }
+
+    /**
+     * Registers an observer which gets notified at any change on the recent matches source.
+     *
+     * @param lifecycleOwner Activity|Fragment
+     * @param observer       observer implementation
+     */
+    public void observeMatches(LifecycleOwner lifecycleOwner, Observer<Response> observer) {
+        mUserMatches.observe(lifecycleOwner, observer);
     }
 
     /**
@@ -73,7 +99,9 @@ public class HomeViewModel extends AbstractViewModel {
      */
     public void onViewFinishedLoading() {
         fetchChapters();
-        fetchUserMatches();
+
+        FirebaseUser firebaseUser = getLoggedInUser();
+        fetchUserMatches(firebaseUser);
     }
 
     /**
@@ -99,15 +127,48 @@ public class HomeViewModel extends AbstractViewModel {
     }
 
     /**
-     * Query FireStore UserMatches collection
+     * Query FireStore UserMatch collection
      */
-    public void fetchUserMatches() {
-        //TODO: Impl
+    public void fetchUserMatches(FirebaseUser firebaseUser) {
+        if (firebaseUser == null)
+            return;
+
+        publishLoading(mUserMatches, true);
+
+        mUserMatchesCollection.whereEqualTo(UserMatch.Fields.userID.toString(), firebaseUser.getUid())
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    final List<ServiceProvider> serviceProviders = new ArrayList<>();
+                    if (!queryDocumentSnapshots.isEmpty()) {
+
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+                            String serviceProviderID = (String) documentSnapshot.
+                                    get(UserMatch.Fields.serviceProviderID.toString());
+
+                            mServiceProvidersCollection
+                                    .whereEqualTo(ServiceProvider.Fields.uid.toString(), serviceProviderID)
+                                    .get()
+                                    .addOnSuccessListener(queryDocumentSnapshots1 -> {
+                                        DocumentSnapshot serviceProviderDocument = queryDocumentSnapshots1.getDocuments()
+                                                .get(0);
+                                        ServiceProvider serviceProvider = serviceProviderDocument
+                                                .toObject(ServiceProvider.class);
+
+                                        serviceProviders.add(serviceProvider);
+                                        publishData(mUserMatches, serviceProviders);
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Timber.e(e);
+                                    });
+                        }
+                    }
+                });
     }
 
     /**
      * Returns the cached user from FireBase Auth
-      * @return Firebase User Object
+     *
+     * @return Firebase User Object
      */
     public FirebaseUser getLoggedInUser() {
         return mFirebaseAuth.getCurrentUser();
@@ -115,6 +176,7 @@ public class HomeViewModel extends AbstractViewModel {
 
     /**
      * Do a null check over cached user to check if it's logged in or not
+     *
      * @return boolean indicating weather is logged in or not
      */
     public boolean isLoggedIn() {

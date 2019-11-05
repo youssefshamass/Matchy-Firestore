@@ -29,12 +29,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.matches.ui.MatchesActivity"
+            android:parentActivityName=".ui.home.ui.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.auth.ui.SignUpActivity"
+            android:parentActivityName=".ui.auth.ui.SignInActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.auth.ui.SignInActivity"
+            android:parentActivityName=".ui.home.ui.HomeActivity"
             android:screenOrientation="portrait" />
 
     </application>
