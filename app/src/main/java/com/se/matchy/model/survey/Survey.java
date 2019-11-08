@@ -9,14 +9,19 @@ import java.util.List;
 
 /**
  * Represents a surveys form related to a single chapter.
+ * Each survey contains a list of questions used to collect the user needs.
  */
 @IgnoreExtraProperties
 public class Survey extends FireStoreModel {
     //region Variables
 
+    // What topic the survey is related to
     private String mChapterID;
+    // From when this survey is valid
     private Date mFromDate;
+    // Till when this survey is valid
     private Date mToDate;
+    // List of questions.
     private List<Question> mQuestions;
 
     //endregion

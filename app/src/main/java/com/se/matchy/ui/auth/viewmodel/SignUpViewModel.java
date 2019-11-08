@@ -1,13 +1,9 @@
 package com.se.matchy.ui.auth.viewmodel;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.se.matchy.framework.messages.Response;
 import com.se.matchy.framework.viewmodel.AbstractViewModel;

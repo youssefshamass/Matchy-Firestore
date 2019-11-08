@@ -12,8 +12,11 @@ public class Question extends FireStoreModel {
 
     //region Variables
 
+    // Question plain text
     private String mQuestion;
+    // List of simple strings shown as answers for the question
     private List<String> mAnswers;
+    // Determines the question order on the scree.
     private int mOrder;
 
     //endregion

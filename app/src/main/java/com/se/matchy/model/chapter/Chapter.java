@@ -12,9 +12,13 @@ public class Chapter extends FireStoreModel {
 
     //region Variables
 
+    // Number of overall matches by all users (not used currently)
     private int mNumberOfMatches;
+    // a special code used for display only
     private String mCode;
+    // plain text used for display only
     private String mDescription;
+    // Chapter name and it's used for display only
     private String mName;
 
     //endregion

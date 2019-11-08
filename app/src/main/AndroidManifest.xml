@@ -17,12 +17,7 @@
         <activity
             android:name=".ui.home.ui.HomeActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.survey.ui.SurveyActivity"
             android:parentActivityName=".ui.home.ui.HomeActivity"
@@ -38,7 +33,12 @@
         <activity
             android:name=".ui.auth.ui.SignInActivity"
             android:parentActivityName=".ui.home.ui.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 </manifest>

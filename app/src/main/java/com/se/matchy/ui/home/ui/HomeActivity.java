@@ -79,6 +79,7 @@ public class HomeActivity extends BaseActivity {
         mFirebaseUser = mHomeViewModel.getLoggedInUser();
 
         updateUIBasedOnUserStatus();
+        mHomeViewModel.fetchUserMatches(mFirebaseUser);
     }
 
     //endregion

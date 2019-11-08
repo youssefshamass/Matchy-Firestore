@@ -43,10 +43,13 @@ public class SignInActivity extends BaseActivity implements Observer<Response> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+
+        if (mSignInViewModel.isLoggedIn())
+            redirectToHome();
+
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this, this);
-
-        init();
     }
 
     //endregion
@@ -119,6 +122,7 @@ public class SignInActivity extends BaseActivity implements Observer<Response> {
 
     private void redirectToHome() {
         Intent homeIntent = HomeActivity.newIntent(this);
+        homeIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(homeIntent);
         finish();
     }

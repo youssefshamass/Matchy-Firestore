@@ -101,7 +101,6 @@ public class HomeViewModel extends AbstractViewModel {
         fetchChapters();
 
         FirebaseUser firebaseUser = getLoggedInUser();
-        fetchUserMatches(firebaseUser);
     }
 
     /**

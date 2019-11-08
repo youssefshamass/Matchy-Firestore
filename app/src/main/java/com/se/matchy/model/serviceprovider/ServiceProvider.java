@@ -13,14 +13,17 @@ import java.util.List;
 public class ServiceProvider extends FireStoreModel {
     //region Variables
 
+    //To Which Topic or Chapter this service provider is related to
     private String mChapterID;
+    //Provider name; used for display only
     private String mName;
+    //Field of work; used for display only
     private String mMajor;
+    //List of keys used to boost the order of the service provider when multiple matches are found.
     private List<String> mTags;
-
-    /*
-    Matching weight
-     */
+    //List of keys that the provider must have in order to appear as a match.
+    private List<String> mMandatoryTags;
+    //Match weight; the results are ordered descending based on the value of this field.
     private int mWeight;
 
     //endregion
@@ -66,6 +69,14 @@ public class ServiceProvider extends FireStoreModel {
         mTags = tags;
     }
 
+    public List<String> getMandatoryTags() {
+        return mMandatoryTags;
+    }
+
+    public void setMandatoryTags(List<String> mandatoryTags) {
+        mMandatoryTags = mandatoryTags;
+    }
+
     public int getWeight() {
         return mWeight;
     }
@@ -73,6 +84,7 @@ public class ServiceProvider extends FireStoreModel {
     public void setWeight(int weight) {
         mWeight = weight;
     }
+
 
     //endregion
 

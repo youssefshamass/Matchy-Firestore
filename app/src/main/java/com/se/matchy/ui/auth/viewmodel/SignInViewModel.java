@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.se.matchy.framework.messages.Response;
 import com.se.matchy.framework.viewmodel.AbstractViewModel;
 
@@ -64,6 +65,15 @@ public class SignInViewModel extends AbstractViewModel {
                     Timber.e(e);
                     publishError(mUser, new IllegalAccessError("Invalid username or password"));
                 });
+    }
+
+    /**
+     * Checks if a firebase authenticates the current session
+     * @return true if a user is already logged in previously
+     *         false if not
+     */
+    public boolean isLoggedIn() {
+        return mFirebaseAuth.getCurrentUser() != null;
     }
     //endregion
 }
