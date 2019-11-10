@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,6 +49,8 @@ public class MatchesActivity extends BaseActivity implements Observer<Response> 
 
     private MatchesViewModel mMatchesViewModel;
 
+    @BindView(R.id.toolbar)
+    public Toolbar mToolbar;
     @BindView(R.id.activity_matches_header_text_view)
     public TextView mHeaderTextView;
     @BindView(R.id.activity_matches_stateful_layout)
@@ -73,6 +76,8 @@ public class MatchesActivity extends BaseActivity implements Observer<Response> 
         setContentView(R.layout.activity_matches);
         ButterKnife.bind(this, this);
 
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
         setupRecyclerViews();
 
@@ -97,6 +102,11 @@ public class MatchesActivity extends BaseActivity implements Observer<Response> 
             });
         } else {
             Response.Succeed succeed = (Response.Succeed) response;
+
+            if (!(succeed.getData() instanceof List)) {
+                mStatefulLayout.showEmpty();
+                return;
+            }
 
             if (mMatchAdapter != null)
                 mMatchAdapter.setDataSource((List) succeed.getData());

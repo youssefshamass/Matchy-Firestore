@@ -72,6 +72,7 @@ public class SurveyActivity extends BaseActivity implements Observer<Response>, 
         ButterKnife.bind(this, this);
 
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
         setupStepper();
 

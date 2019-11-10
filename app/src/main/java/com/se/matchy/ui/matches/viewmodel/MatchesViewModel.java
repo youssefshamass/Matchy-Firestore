@@ -94,7 +94,7 @@ public class MatchesViewModel extends AbstractViewModel {
 
                                     //The tag contains an or operator
                                     if (mandatoryTag.contains("||"))
-                                        deconstructedTags.addAll(Arrays.asList(mandatoryTag.split("||")));
+                                        deconstructedTags.addAll(Arrays.asList(mandatoryTag.split("\\|\\|")));
                                     else
                                         deconstructedTags.add(mandatoryTag);
 
@@ -126,7 +126,7 @@ public class MatchesViewModel extends AbstractViewModel {
                         }
                     }
 
-                    if (validServiceProviders.size() > 0) {
+                    if (validServiceProviders != null && validServiceProviders.size() > 0) {
                         java.util.Collections.sort(validServiceProviders, (o1, o2) -> o1.getWeight() - o2.getWeight());
                         java.util.Collections.reverse(validServiceProviders);
                     }
