@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -52,6 +53,8 @@ public class HomeActivity extends BaseActivity {
     public ViewGroup mLackOfPermissionsViewGroup;
     @BindView(R.id.activity_home_recent_matches_progress_bar)
     public ProgressBar mRecentMatchesProgressBar;
+    @BindView(R.id.activity_home_signout_text_view)
+    public TextView mSignoutTextView;
 
     private FirebaseUser mFirebaseUser;
     private ChapterAdapter mChapterAdapter;
@@ -90,6 +93,15 @@ public class HomeActivity extends BaseActivity {
     public void onSignInClicked() {
         Intent intent = SignInActivity.newIntent(this);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.activity_home_signout_text_view)
+    public void onSignoutClicked() {
+        FirebaseAuth.getInstance().signOut();
+
+        Intent intent = SignInActivity.newIntent(this);
+        startActivity(intent);
+        finish();
     }
 
     //endregion
@@ -164,8 +176,10 @@ public class HomeActivity extends BaseActivity {
 
     private void updateUIBasedOnUserStatus() {
         if (mFirebaseUser != null) {
+            mSignoutTextView.setVisibility(View.VISIBLE);
             mLackOfPermissionsViewGroup.setVisibility(View.GONE);
         } else {
+            mSignoutTextView.setVisibility(View.GONE);
             mLackOfPermissionsViewGroup.setVisibility(ViewGroup.VISIBLE);
         }
     }

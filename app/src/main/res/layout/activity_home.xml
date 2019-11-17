@@ -26,6 +26,7 @@
                 app:mwhVelocity=".4"
                 app:mwhWaves="PairWave" />
 
+
             <TextView
                 android:id="@+id/activity_main_choose_topics_header_text_view"
                 android:layout_width="match_parent"
@@ -48,6 +49,26 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_huge"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/activity_home_signout_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawablePadding="@dimen/spacing_tiny"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:padding="@dimen/spacing_small"
+                android:text="Sign out"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_normal"
+                android:textStyle="bold" />
+
 
             <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                 android:id="@+id/activity_main_topics_recycler_view"
@@ -82,10 +103,10 @@
                 android:id="@+id/activity_home_recent_matches_progress_bar"
                 style="?android:progressBarStyleSmallTitle"
                 android:layout_width="wrap_content"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="4dp" />
+                android:layout_marginBottom="4dp"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
