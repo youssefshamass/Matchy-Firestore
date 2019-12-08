@@ -25,11 +25,13 @@ import com.se.matchy.framework.ui.decorators.HorizontalEdgeDecorator;
 import com.se.matchy.framework.ui.decorators.HorizontalSpaceDecorator;
 import com.se.matchy.framework.ui.decorators.VerticalSpaceDecorator;
 import com.se.matchy.model.chapter.Chapter;
+import com.se.matchy.model.serviceprovider.ServiceProvider;
 import com.se.matchy.ui.auth.ui.SignInActivity;
 import com.se.matchy.ui.auth.ui.SignUpActivity;
 import com.se.matchy.ui.home.ui.adapters.ChapterAdapter;
 import com.se.matchy.ui.home.viewmodel.HomeViewModel;
 import com.se.matchy.ui.matches.adapters.MatchAdapter;
+import com.se.matchy.ui.providerinfo.ProviderInfoActivity;
 import com.se.matchy.ui.survey.ui.SurveyActivity;
 
 import java.util.List;
@@ -165,8 +167,16 @@ public class HomeActivity extends BaseActivity {
         )));
         mChaptersRecyclerView.setAdapter(mChapterAdapter);
 
-        if (mMatchAdapter == null)
+        if (mMatchAdapter == null) {
             mMatchAdapter = new MatchAdapter();
+            mMatchAdapter.setHolderClickListener(dataSource -> {
+                if (!(dataSource instanceof ServiceProvider))
+                    return;
+
+                startActivity(ProviderInfoActivity.newIntent(this,
+                        (ServiceProvider) dataSource));
+            });
+        }
 
         mRecentMatchesRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecentMatchesRecyclerView.addItemDecoration(new VerticalSpaceDecorator(getResources().getDimensionPixelSize(R.dimen.spacing_small),

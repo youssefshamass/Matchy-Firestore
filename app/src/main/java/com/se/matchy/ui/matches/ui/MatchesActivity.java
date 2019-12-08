@@ -22,11 +22,13 @@ import com.gturedi.views.StatefulLayout;
 import com.se.matchy.R;
 import com.se.matchy.framework.messages.Response;
 import com.se.matchy.framework.ui.BaseActivity;
+import com.se.matchy.framework.ui.BaseViewHolder;
 import com.se.matchy.framework.ui.decorators.VerticalSpaceDecorator;
 import com.se.matchy.model.serviceprovider.ServiceProvider;
 import com.se.matchy.ui.matches.adapters.CriteriaAdapter;
 import com.se.matchy.ui.matches.adapters.MatchAdapter;
 import com.se.matchy.ui.matches.viewmodel.MatchesViewModel;
+import com.se.matchy.ui.providerinfo.ProviderInfoActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -143,8 +145,16 @@ public class MatchesActivity extends BaseActivity implements Observer<Response> 
     }
 
     private void setupRecyclerViews() {
-        if (mMatchAdapter == null)
+        if (mMatchAdapter == null) {
             mMatchAdapter = new MatchAdapter();
+            mMatchAdapter.setHolderClickListener(dataSource -> {
+                if (!(dataSource instanceof ServiceProvider))
+                    return;
+
+                startActivity(ProviderInfoActivity.newIntent(this,
+                        (ServiceProvider) dataSource));
+            });
+        }
 
         mMatchesRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mMatchesRecyclerView.addItemDecoration(new VerticalSpaceDecorator(getResources().getDimensionPixelSize(R.dimen.spacing_small),

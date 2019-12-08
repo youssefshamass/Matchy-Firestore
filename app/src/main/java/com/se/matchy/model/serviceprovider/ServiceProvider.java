@@ -19,6 +19,14 @@ public class ServiceProvider extends FireStoreModel {
     private String mName;
     //Field of work; used for display only
     private String mMajor;
+    //used for display only
+    private String mFloor;
+    //used for display only
+    private String mLocationDetails;
+    //used for display only
+    private String mMobileNumber;
+    //used for display only
+    private String mEmailAddress;
     //List of keys used to boost the order of the service provider when multiple matches are found.
     private List<String> mTags;
     //List of keys that the provider must have in order to appear as a match.
@@ -85,6 +93,41 @@ public class ServiceProvider extends FireStoreModel {
         mWeight = weight;
     }
 
+    public String getFloor() {
+        return mFloor;
+    }
+
+    public void setFloor(String floor) {
+        mFloor = floor;
+    }
+
+    public String getLocationDetails() {
+        return mLocationDetails;
+    }
+
+    public void setLocationDetails(String locationDetails) {
+        mLocationDetails = locationDetails;
+    }
+
+    public String getMobileNumber() {
+        return mMobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        mMobileNumber = mobileNumber;
+    }
+
+    public String getEmailAddress() {
+        return mEmailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        mEmailAddress = emailAddress;
+    }
+
+    public String getLocationSpecification() {
+        return "Found At " + getLocationDetails() + " - Floor " + getFloor();
+    }
 
     //endregion
 

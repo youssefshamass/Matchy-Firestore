@@ -20,4 +20,6 @@
     <string name="invalid_format">Invalid format</string>
     <string name="successfully_signed_in">Welcome to Matchy</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="provider_info">Provider Info</string>
+    <string name="contact_information">Contact Information:</string>
 </resources>
